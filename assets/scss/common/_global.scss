@@ -26,6 +26,7 @@ h6,
 
 @include media-breakpoint-up(md) {
   body {
+    font-family: "Gentium Basic", "Songti SC", "SimSun", serif;
     font-size: $font-size-md;
     padding-top: 4rem !important;
   }
@@ -42,6 +43,7 @@ h6,
   .h4,
   .h5,
   .h6 {
+    font-family: "Voces", "SimHei", "Sans Serif", serif;
     margin-bottom: 1.125rem;
   }
 }
@@ -226,4 +228,10 @@ body {
 
 .katex {
   font-size: $font-size-md;
+}
+
+.card .card-bar {
+  border-top: 4px solid;
+  border-image-source: linear-gradient(90deg, #5d2f86, #8ed6fb 50%, #d32e9d);
+  border-image-slice: 1;
 }
