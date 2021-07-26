@@ -14,7 +14,9 @@ toc: true
 ---
 
 ## 特征归一化
+
 ### 1. 每维度归一
+
 + Per-dimension normalization
   + 虚拟的例子（判别性别）
     + 假设用两个特征：身高和体重
@@ -30,6 +32,7 @@ toc: true
     $$
 
 ### 稀疏数据
+
 + 新数据范围是？各维度统一了吗？
   + [0,1]
   + 若某一维$x_{max,j}=x_{min,j}$：这一维是常数，对模式识别并没有作用，可以直接删除。
@@ -41,6 +44,7 @@ toc: true
   + 如果所有数据$\geq 0$，在两种归一化中，原来是0的会变成什么？
 
 ### 2. $l_2$或$l_1$归一化
+
 + 若各维度取值范围的不同是有意义的，但是不同数据点之间的大小（如向量长度norm）应该保持一致
   + 对每个数据$\boldsymbol{x}_i=(x_{i1},...,x_{xd})$
     $$
@@ -54,6 +58,7 @@ toc: true
     $$
 
 ### 3. zeor-norm, unit variance
+
 + 有时候有理由相信每一个维度是服从高斯分布的
   + 希望每一个维度归一化到$N(0,1)$
 + 对每一维$j$，其数据为$x_{1j},x_{2j},...,x_{nj}$
@@ -64,6 +69,7 @@ toc: true
     $$
 
 ### 归一化测试数据
+
 + 怎样归一化测试数据？`错误！！！`
   + 从测试集寻找最大值、最小值、均值？
 + 除了在测试的时候，永远不要使用测试数据！
@@ -74,6 +80,7 @@ toc: true
   + 使用同样的公式和保存的参数来归一化测试集
 
 ### 归一化小结
+
 + 归一化的方法应该是根据数据的特点来选择的
   + 在做任何机器学习之前，先搞清你的数据的特点
     + 稀疏？
@@ -85,7 +92,9 @@ toc: true
 + 不同的归一化方法可以混合使用
 
 ## Fisher线性判别分析（LDA）
+
 ### 为什么需要FLD？
+
 + 理论上可以证明，PCA在数据是单个高斯分布是最佳
   + PCA有利于表示数据，但和分类无关
 + 分类问题中，不同类别的分布$p(\boldsymbol{x}\mid y=i)$不能相同
@@ -95,6 +104,7 @@ toc: true
 {{< img src="5-1.png" alt="Rectangle" class="border-0" >}}
 
 ### 用数学形式表示formalize
+
 + 两个类别$y_i\in\\{1,2\\}$，数据$\boldsymbol{x}_i$，两类各有$N_1,N_2$各点
 + 希望寻找一个投影方向projection direction，$u = \boldsymbol{w}^\top\boldsymbol{x}$，使得两个类别的数据在投影以后容易被分开separate
 + 两个类各自的均值为
@@ -104,6 +114,7 @@ toc: true
 + 投影以后的均值为$m_1=\boldsymbol{w}^\top\boldsymbol{\mu}_1,m_2=\boldsymbol{w}^\top\boldsymbol{\mu}_2$
 
 ### Objective: Fisher's Criterion
+
 + 怎样描述“分开”的程度？
 + Maximize$(m_2-m_1)^2$?问题
   + 这个值可以无限大，怎么解决？
@@ -116,6 +127,7 @@ toc: true
     $$
 
 ### 分散程度的度量
+
 + 对一维数据，自然的度量是方差或散度(k=1,2)
   $$
   s_k^2=\sum_{y_i=k}(\mu_i-m_k)^2
@@ -126,6 +138,7 @@ toc: true
 + $(m_2-m_1)^2=\boldsymbol{w}^\top(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)^\top\boldsymbol{w}$
 
 ### 散布矩阵
+
 + $S_k=\sum_{y_i=k}(\boldsymbol{x}_i-\boldsymbol{\mu}_k)(\boldsymbol{x}_i-\boldsymbol{\mu}_k)^\top$是什么？
 + 类内散布矩阵
   $$
@@ -142,6 +155,7 @@ toc: true
   这种形式称为广义瑞利商
 
 ### Optimization：如何求解？
+
 + 练习：用拉格朗日乘子法，证明（记得查表）最优化时必须满足
   $$
   S_B\boldsymbol{w}=\lambda S_W\boldsymbol{w}
@@ -153,6 +167,7 @@ toc: true
   + $(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)=\lambda S_W\boldsymbol{w}$
 
 ### FLD的步骤
+
 1. 计算$\boldsymbol{\mu}_2,\boldsymbol{\mu}_1$
 2. 计算$S_W$
 3. 计算$\boldsymbol{w}=S_W^{-1}(\boldsymbol{\mu}_2-\boldsymbol{\mu}_1)$
@@ -162,6 +177,7 @@ toc: true
    $$
 
 ### 如果不可逆怎么办？
+
 + 如果数据很少或者维度很高，$S_W$很可能不可逆
   + 广义逆矩阵
 + $S_W$是实对称的，而且至少是半正定的
@@ -175,6 +191,7 @@ toc: true
     $$
 
 ### 如果大于2类怎么办？
+
 + C类问题
   + $\boldsymbol{\mu}_i,N_i,m_i,S_i$和2类问题中一定定义
   + $S_W=\sum_{i=i}^C S_i$，很容易从2类问题推广
@@ -187,9 +204,11 @@ toc: true
   + 练习：证明，当$C=2$时，有$S_T=S_W+S_B$
 
 ### 更多的投影方向
+
 $$
 \max J(w)=\frac{\boldsymbol{w}^\top S_B\boldsymbol{w}}{\boldsymbol{w}^\top S_W\boldsymbol{w}}
 $$
+
 + 求解广义特征值问题
   $$
   S_B\boldsymbol{w}_i=\lambda_i S_W\boldsymbol{w}_i
@@ -198,11 +217,14 @@ $$
 + 利用Matlab求解
 
 ## 应用：人脸识别
+
 ### 人脸
+
 + 为什么人脸数据特别适合PCA和FLD？
 + 用什么分类器？（最近邻）
 
 ### 张量Tensor：深度学习的基石
+
 + 标量：$x\in\mathbb{R}$
 + 向量：$\boldsymbol{x}\in\mathbb{R}^d$
 + 矩阵：$X\in \mathbb{R}^d\times \mathbb{R}^d$

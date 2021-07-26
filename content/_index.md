@@ -9,5 +9,5 @@ images: []
 ---
 
 🌱 I’m currently learning Android and Kotlin  
-🔭 I’m currently working on Android App virtual execution   
+🔭 I’m currently working on Android App virtual execution  
 💬 My email: hwei1999@outlook.com

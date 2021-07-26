@@ -25,17 +25,17 @@ toc: true
 
 + 分布函数的性质:
 
-  - 单调不减性;
+  + 单调不减性;
 
-  - $0\leq F(x,y)\leq 1$，且任意固定的$y\in R$,$F(-\infty,y) = \lim\limits_{x->-\infty}F(x,y) = 0$，任意固定的$x\in R$同理。且$F(-\infty,-\infty) = 0$， $F(+\infty, +\infty) = 1$
+  + $0\leq F(x,y)\leq 1$，且任意固定的$y\in R$,$F(-\infty,y) = \lim\limits_{x->-\infty}F(x,y) = 0$，任意固定的$x\in R$同理。且$F(-\infty,-\infty) = 0$， $F(+\infty, +\infty) = 1$
 
-  - $F(x,y)$对$x$和$y$是有连续的,即
+  + $F(x,y)$对$x$和$y$是有连续的,即
     $$
     F(x,y) = \lim\limits_{z->x^+}F(z,y)\newline
     F(x,y) = \lim\limits_{z->y^+}F(x,z)
     $$
 
-  - 对于任意实数$x_1\leq x_2, y_1\leq y_2$
+  + 对于任意实数$x_1\leq x_2, y_1\leq y_2$
     $$
     F(x_2,y_2) - F(x_1,y_2)-F(x_2,y_1)+F(x_1,y_1)\geq 0
     $$
@@ -44,8 +44,8 @@ toc: true
 
 + 边缘分布函数:
 
-  - $F_X(x) = P(X\leq x) = P(X\leq x, Y < +\infty) = \lim\limits_{y\rightarrow+\infty}P(X\leq x, Y\leq y) = F(x,+\infty)$
-  - $F_Y(y) = F(+\infty,y)$
+  + $F_X(x) = P(X\leq x) = P(X\leq x, Y < +\infty) = \lim\limits_{y\rightarrow+\infty}P(X\leq x, Y\leq y) = F(x,+\infty)$
+  + $F_Y(y) = F(+\infty,y)$
 
 ### 二. 二维连续型随机向量
 
@@ -57,8 +57,8 @@ toc: true
 
 + 边缘密度函数
 
-  - $p_X(x) = \int_{-\infty}^{+\infty} p(x,v)dv$
-  - $p_Y(y) = \int_{-\infty}^{+\infty}p(u,y)du$
+  + $p_X(x) = \int_{-\infty}^{+\infty} p(x,v)dv$
+  + $p_Y(y) = \int_{-\infty}^{+\infty}p(u,y)du$
 
 + 若二维随机向量$(X,Y)$的联合分布函数为,任意$x,y\in R$,
   $$
@@ -111,8 +111,6 @@ toc: true
   $$
   P(Z = z_k) = \sum\limits_{x_i}P(X=x_i,Y=z_k-x_i)
   $$
-
-+ 
 
 ### 二. 二维连续型随机向量函数的分布
 

@@ -14,6 +14,7 @@ toc: true
 ---
 
 ## 统计学习方法的粗略分类
+
 + Statistial learning methods
   + $p(y=i),\ p(y = i\mid \boldsymbol{x}),\ p(\boldsymbol{x}\mid y = i),\ p(\boldsymbol{x})$
   + Generative (probabilistic) medels：估计$p(\boldsymbol{x}\mid y = i)$和$p(y)$
@@ -25,6 +26,7 @@ toc: true
     + 不假设概率模型：如FLD，SVM
 
 ## large margin（最大边际？）
+
 + 用线性边界分开2类
   + 正类，$y_i=1$
   + 负类，$y_i=-1$
@@ -32,13 +34,16 @@ toc: true
   {{< img src="6-1.png" alt="Rectangle" class="border-0" >}}
 
 ## margin
+
 {{< img src="6-2.png" alt="Rectangle" class="border-0" >}}
+
 + 一个点（样例）的边际margin是其到分界超平面separating hyperplane的垂直距离
 + SVM最大化（所有训练样本的）最小边际
 + 有最小边际的点称为支持向量(support vectors)
   + 所以叫支持向量机(support vector machine)
 
 ## 几何geometry示意图
+
 + 分类超平面
   $$
   f(\boldsymbol{x}) = \boldsymbol{w}^\top \boldsymbol{x}+b = 0
@@ -49,6 +54,7 @@ toc: true
 {{< img src="6-3.png" alt="Rectangle" class="border-0" >}}
 
 ## 计算margin
+
 + 投影点为$\boldsymbol{x}_\perp$，$\boldsymbol{x} - \boldsymbol{x}_\perp$为距离向量
   + 其方向与$\boldsymbol{w}$相同，为$\frac{\boldsymbol{w}}{\lVert\boldsymbol{w}\rVert}$
   + 其大小$r$可为0，或正，或负；margin为其大小的绝对值
@@ -59,6 +65,7 @@ toc: true
   + $\boldsymbol{x}$的margin是$\frac{|f(\boldsymbol{x}|}{\lVert\boldsymbol{w}\rVert}=\frac{|\boldsymbol{w}^\top\boldsymbol{x}+b|}{\lVert\boldsymbol{w}\rVert}$
 
 ## 分类、评价
+
 + 怎么样分类？
   + $f(\boldsymbol{x})>0$ 分为正类，$f(\boldsymbol{x})<0$分为负类
   + 那么$f(\boldsymbol{x})=0$怎么办？
@@ -70,6 +77,7 @@ toc: true
     $$
 
 ## SVM的形式化描述
+
 + 那么，SVM的问题是什么？
   $$
   \argmax_{\boldsymbol{w},b}(\min_i(\frac{|\boldsymbol{w}^\top\boldsymbol{x}_i+b|}{\lVert\boldsymbol{w}\rVert}))
@@ -84,6 +92,7 @@ toc: true
   + 继续化简
 
 ## 换个角度看问题
+
 + 到目前为止
   + 对$\boldsymbol{w}$没有限制，要求最大化最小的边际，难优化
 + 判断对错，如果$yf(\boldsymbol{x})>0$即正确
@@ -98,6 +107,7 @@ toc: true
     $$
 
 ## 拉格朗日乘子法
+
 + $L(\boldsymbol{w},b,\boldsymbol{a})=\frac{1}{2}\boldsymbol{w}^\top\boldsymbol{w}-\sum_{i=1}^na_i(y_i(\boldsymbol{w}^\top\boldsymbol{x}_i+b)-1)$
   + subject to $a_i\geq 0$
 + （作业：证明最优化的必要条件）
@@ -109,6 +119,7 @@ toc: true
   $$
 
 ## SVM的对偶形式
+
 + 在原来的空间（输入空间）中
   + 变量是$\boldsymbol{x}$，称为SVM的primal form
 + 现在的问题里面
@@ -121,6 +132,7 @@ toc: true
   $$
 
 ## 剩下的问题
+
 + 如何最优化？
   + 对偶空间中
   + 原始空间中
@@ -130,6 +142,7 @@ toc: true
 + 如果不是两个类，而是多个呢？
 
 ## Soft margin
+
 + 可以允许少数点margin比1小
   + 但是犯错误是有惩罚点的，否则？
   + $y_i(\boldsymbol{w}^\top\boldsymbol{x}_i+b)\geq 1\rightarrow y_i(\boldsymbol{w}^\top\boldsymbol{x}_i+b)\geq 1-\xi_i$
@@ -139,6 +152,7 @@ toc: true
   {{< img src="6-4.png" alt="Rectangle" class="border-0" >}}
 
 ## 如何惩罚？
+
 + Primal space
   $$
   \argmin_{\boldsymbol{w},b}\frac{1}{2}\boldsymbol{w}^\top\boldsymbol{w}+C\sum_{i=1}^n\xi_i\newline
@@ -151,6 +165,7 @@ toc: true
   + 那么，怎么确定C的值？
 
 ## Soft margin的对偶形式
+
 + 推导见PRML
   $$
   \argmax_{\boldsymbol{a}}\sum_{i=1}^n a_i-\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^n a_ia_jy_iy_j\boldsymbol{x}_i^\top \boldsymbol{x}_j\newline
@@ -159,11 +174,13 @@ toc: true
 + 对偶形式仅依赖于内积
 
 ## 内积：线性和非线性的联系
+
 + 线性和非线性有时候紧密联系在一起——通过内积
 + $\boldsymbol{x} = (x_1,x_2),\boldsymbol{z}=(z_1,z_2)$
 + $K(x,z)=(1+\boldsymbol{x}^\top\boldsymbol{z})^2=(1+x_1z_1+x_2z_2)^2$
 
 ## Kernel trick
+
 + 两个向量$\boldsymbol{x},\boldsymbol{y}\in\mathbb{R}^d$，一个非线性函数$K(\boldsymbol{x},\boldsymbol{y})$
 + 对于满足某些条件的函数$K$，一定存在一个映射$\phi:\mathbb{R}\rightarrow\Phi$，使得对任意的$\boldsymbol{x},\boldsymbol{y}$
   $$
@@ -175,12 +192,14 @@ toc: true
   + 可以是有限维德空间，但也可以是无穷维的空间
 
 ## 什么样的限制条件？
+
 + 必须存在特征映射，才可以将非线性函数表示为特征空间中的内积
 + Mercer's condition（充分必要）：对任何满足 $\int g^2(\boldsymbol{u})d\boldsymbol{u}<\infty$ 的非零函数，对称函数$K$满足条件：$\int\int g(\boldsymbol{u})K(\boldsymbol{u},\boldsymbol{v})g(\boldsymbol{v})d\boldsymbol{u}d\boldsymbol{v}\geq 0$
 + 另一种等价形式：对任何一个样本集合$\{\boldsymbol{x}_1,...,\boldsymbol{x}_n,\boldsymbol{x}_i\in\mathbb{R}^d\}$，如果矩阵
   $K=[K_{ij}]_{i,j}$（矩阵的第$i$行、第$j$列元素 $K_{ij}=K(\boldsymbol{x}_i,\boldsymbol{x}_j)$ ）总是半正定的，那么函数$K$满足Mercer条件。
 
 ## 核支持向量机Kernel SVM
+
 + 核函数kernel function：K
 + 对偶形式：
   $\argmax_{\boldsymbol{a}}\sum_{i=1}^n a_i-\frac{1}{2}\sum_{i=1}^n\sum_{j=1}^na_ia_jy_iy_jK(\boldsymbol{x}_i,\boldsymbol{x}_j)$
@@ -190,8 +209,8 @@ toc: true
   + 非线性（核）方法测试所需时间为？
   + 假设计算$K$的时间为$O(d)$，是$O(nd)$吗？
 
-
 ## Complementary Slackness
+
 + 对所有$i$，KKT条件包括$(C-a_i)\xi_i=0$
   + 情况1：$C>a_i>0,\xi_i=0$，在特征空间中边际为1的两个超平面上
   + 情况2：$a_i=C$，对$\xi_i$没有限制
@@ -203,12 +222,14 @@ toc: true
   + 在soft margin SVM中，称$a_i>0$对应的$\boldsymbol{x}_i$为支持向量
 
 ## 非线性核
+
 + 线性核：$K(\boldsymbol{x},\boldsymbol{y})=\boldsymbol{x}^\top\boldsymbol{y}$
 + 非线性核：
   + RBF、高斯核：$K(\boldsymbol{x},\boldsymbol{y})=\exp(-\gamma\lVert\boldsymbol{x}-\boldsymbol{y}\rVert^2)$
   + 多项式核：$K(\boldsymbol{x},\boldsymbol{y})=(\gamma\boldsymbol{x}^\top\boldsymbol{y}+c)^d$
 
 ## 超参数
+
 + 如何决定$C,\gamma,...$
   + 必须给定这些参数的值，才能进行SVM学习，SVM本身学习这些参数！
   + 称为超参数
@@ -218,6 +239,7 @@ toc: true
   + 选择准确率最高的超参数的值
 
 ## 多类(1)
+
 + 思路：转化为2类问题
 + 1-vs-1：C个类$\\{1,2,...,C\\}$
   + 设计$C\choose 2$个分类器：用$i$和$j(i>j)$两类的训练数据学习
@@ -227,6 +249,7 @@ toc: true
   {{< img src="6-5.png" alt="Rectangle" class="border-0" >}}
 
 ## 多类(2)
+
 + 1-vs.-all（或1-vs.-rest）
   + 设计$C$个分类器，第$i$个分类器用类$i$做正类，把其他所有$C-1$个类别的数据合并在一起做负类
     + 和交叉验证的步骤有些类似

@@ -40,9 +40,6 @@ toc: true
    则$EX = 0\cdot q+1\cdot p = p$.
 
    $D(X) = pq​$
-
-   
-
 2. 二项分布$B(n,p),0<p<1$
 
    设随机变量$X$服从二项分布:
@@ -54,33 +51,24 @@ toc: true
    EX = \sum\limits_{k=0}^nkC_n^kp^k(1-p)^{n-k} = \sum\limits_{k=1}^n\frac{k\cdot n!}{k!(n-k)!}p^k(1-p)^{n-k} \newline= np\sum\limits_{k=1}^n\frac{(n-1)!}{(k-1)!(n-1)!}p^{k-1}(1-p)^{(n-1)-(k-1)} = np
    $$
 
-   
-
    $$
    D(x) = npq
    $$
-
-
-
 3. 泊松分布$P(\lambda)$
 
    设随机变量$X$服从参数为$\lambda$的泊松分布,$\lambda>0$:
 
-$$
-P(X=k) = \frac{\lambda^k}{k!}e^{-\lambda},\quad k = 0,1...
-$$
-​	则$X$的数学期望存在,其值为
-$$
-EX = \sum\limits_{k=0}^{+\infty} kP(X=k) = \sum\limits_{k=1}^{+\infty}k\frac{\lambda^k}{k!}e^{-\lambda} = \lambda\sum\limits_{k=0}^{+\infty}\frac{\lambda^k}{k!}e^{-\lambda} = \lambda
-$$
+  $$
+  P(X=k) = \frac{\lambda^k}{k!}e^{-\lambda},\quad k = 0,1...
+  $$
+  则$X$的数学期望存在,其值为
+  $$
+  EX = \sum\limits_{k=0}^{+\infty} kP(X=k) = \sum\limits_{k=1}^{+\infty}k\frac{\lambda^k}{k!}e^{-\lambda} = \lambda\sum\limits_{k=0}^{+\infty}\frac{\lambda^k}{k!}e^{-\lambda} = \lambda
+  $$
 
-
-$$
-D(X) = \lambda
-$$
-
-
-
+  $$
+  D(X) = \lambda
+  $$
 4. 均匀分布$U[a,b],-\infty < a< b < +\infty$
    $$
    EX =\frac{a+b}{2}
@@ -89,9 +77,6 @@ $$
    $$
    D(X) = \frac{(b-a)^2}{12}
    $$
-
-   
-
 5. 指数分布$e(\lambda),\lambda>0$
 
    设随机变量$X$服从指数分布,其密度函数为
@@ -106,7 +91,6 @@ $$
    $$
    D(X) = \lambda^{-2}
    $$
-
 6. $\Gamma$分布$G(\lambda,r),\lambda,r>0$
 
    设随机变量$X$服从参数为$\lambda ,r$的$\Gamma$分布,则其密度函数为
@@ -121,7 +105,6 @@ $$
    $$
    D(X) = r\lambda^{-2}
    $$
-
 7. 正态分布$N(\mu,\sigma^2),\mu\in R,\sigma>0$
    $$
    EX = \mu
@@ -131,32 +114,30 @@ $$
    D(X) = \sigma^2
    $$
 
-   
-
 ### 随机变量函数的数学期望
 
 + 若随机变量$X$的函数$Y=g(x)$也是一个随机变量，设$g(x)$的数学期望存在，则下面的结论成立.
 
-  - 若$X$为离散型随机变量,其分布率为$P(X=x_k)=p_k,\;k = 1,2,...$,则$Y$的数学期望为
+  + 若$X$为离散型随机变量,其分布率为$P(X=x_k)=p_k,\;k = 1,2,...$,则$Y$的数学期望为
     $$
     EY = E[g(x)] = \sum_{k=1}^{+\infty}g(x_k)P(X=x_k) = \sum_{k=1}^{+\infty}g(x_k)p_k
     $$
 
-  - 若$X$为连续型随机变量，其密度为$p(x)$，则
+  + 若$X$为连续型随机变量，其密度为$p(x)$，则
     $$
     EY = E[g(x)] = \int_{-\infty}^{+\infty}g(x)p_xdx
     $$
 
 + 设随机向量$(X,Y)$的函数$Z=g(X,Y)$是一个随机变量，且期望存在，则下面的结论成立.
 
-  - 若$(X,Y)$是一个离散型的随机向量，其联合分布率为$P(X=x_i,Y=y_j) = p_{ij},\;i,j = 1,2...$
+  + 若$(X,Y)$是一个离散型的随机向量，其联合分布率为$P(X=x_i,Y=y_j) = p_{ij},\;i,j = 1,2...$
 
     则
     $$
     EZ = E[g(X,Y)]=\sum\limits_{i = 1}^{+\infty}\sum\limits_{j=1}^{+\infty}g(x_i,y_j)p_{ij}
     $$
 
-  - 若$(X,Y)$为连续型随机向量，其联合密度为$p(x,y)$，则
+  + 若$(X,Y)$为连续型随机向量，其联合密度为$p(x,y)$，则
     $$
     EZ = E[g(X,Y)]=\int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}g(x,y)p(x,y)dxdy
     $$
@@ -165,7 +146,7 @@ $$
 
 + 对常数$a,b$,若$a\leq x\leq b$,则$a\leq EX\leq b$
 
-+ 线性性质: 
++ 线性性质:
   $$
   E(c_1X_1+c_2X_2+c_3X_3+...+c_nX_n) = c_1EX_1+c_2EX_2+...+c_nEX_n
   $$
@@ -190,7 +171,7 @@ $$
 
 + 设$a,b$为任意有限常数,$X$的方差存在,则
   $$
-  D(aX+b) =a^2D(X) 
+  D(aX+b) =a^2D(X)
   $$
 
 + 对任意方差存在的随机变量$X$和$Y$,其和或差的方差任然有限,且

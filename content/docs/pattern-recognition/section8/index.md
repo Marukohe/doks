@@ -16,6 +16,7 @@ toc: true
 ## 度量
 
 ### 特征的表示和比较
+
 + 两个重要的任务：
   + 特征的表示：特征抽取后，如何表示为数学化或者计算机可以理解的数据形式？
     + 到目前为止：所有数据均表示为一个连续的实数值的向量$x\in\mathbb{R}^d$
@@ -26,6 +27,7 @@ toc: true
 + 但是：还有很多其它类型的数据
 
 ### 更多的数据类型
+
 + 标记数据Normal data
   + 如数据1,2,3分别表示苹果、梨和香蕉
   + 不是连续的实数值，也不可以比较大小（1<2代表苹果不如梨吗？）、不可以比较相似性
@@ -34,6 +36,7 @@ toc: true
   + 不是向量，测量次数不等，如何比较？
 
 ### 更多的度量
+
 + 目前已用
   + 不相似程度或距离：欧氏距离
   + 相似程度：内积或者RBF核
@@ -42,6 +45,7 @@ toc: true
 + 度量metric
 
 ### Metric
+
 + 一个度量$d$必须满足：对任意向量$\boldsymbol{x},\boldsymbol{y},\boldsymbol{z}$
   + 非负：$d(\boldsymbol{x},\boldsymbol{y})\geq 0$
   + 自反：$d(\boldsymbol{x},\boldsymbol{y})=0$当且仅当$\boldsymbol{x}=\boldsymbol{y}$
@@ -49,27 +53,30 @@ toc: true
   + 三角不等式：$d(\boldsymbol{x},\boldsymbol{y})+b(\boldsymbol{y},\boldsymbol{z})\geq b(\boldsymbol{x},\boldsymbol{z})$
 
 ### 从欧氏距离到度量学习
+
 + Euclidean distance：$d^2(\boldsymbol{x},\boldsymbol{y})=(\boldsymbol{x}-\boldsymbol{y})^\top(\boldsymbol{x}-\boldsymbol{y})$
 + Mahalanobis distance：$d^2(\boldsymbol{x},\boldsymbol{y})=(\boldsymbol{x}-\boldsymbol{y})^\top\Sigma^{-1}(\boldsymbol{x}-\boldsymbol{y})$
   + $\Sigma$是数据的协方差矩阵
 + 进一步推广：可以用一个半正定的矩阵$A$代替$\Sigma^{-1}$
-    + $d_A^2(\boldsymbol{x},\boldsymbol{y})=(\boldsymbol{x}-\boldsymbol{y})^\top A(\boldsymbol{x}-\boldsymbol{y})$
-    + $A$半正定，存在$G$，使得$A=G^\top G$
-    + 因此，$d_A^2(\boldsymbol{x},\boldsymbol{y})=\lVert G\boldsymbol{x}-G\boldsymbol{y}\rVert^2_2$
+  + $d_A^2(\boldsymbol{x},\boldsymbol{y})=(\boldsymbol{x}-\boldsymbol{y})^\top A(\boldsymbol{x}-\boldsymbol{y})$
+  + $A$半正定，存在$G$，使得$A=G^\top G$
+  + 因此，$d_A^2(\boldsymbol{x},\boldsymbol{y})=\lVert G\boldsymbol{x}-G\boldsymbol{y}\rVert^2_2$
 
 ### 固定形式的distance
+
 + Minkowski distance：$d_p(\boldsymbol{x}-\boldsymbol{y})=(\sum_{i=1}^d|x_i-y_i|^p)^{\frac{1}{p}}$
   + $p\geq 1$时是metric
   + $p=2$是欧氏距离，成为曼哈顿距离
   + 若$p<1$，不是metric
 
 ### Norm、distance、similarity
+
 + 一个向量$\boldsymbol{x}$的$p$ norm（或者$L_p$ norm）
   $$
   \lVert\boldsymbol{x}\rVert_p=\left(\sum_{i=1}^d|x_i|^p\right)^{\frac{1}{p}}
   $$
   + 限制条件$p\geq 1$
-    + $\lVert \boldsymbol{x}\rVert_\infty=\max(|x_1|,...,|x_d|)$ 
+    + $\lVert \boldsymbol{x}\rVert_\infty=\max(|x_1|,...,|x_d|)$
 + 距离和长度的关系：$d_p(\boldsymbol{x},\boldsymbol{y})=\lVert\boldsymbol{x}-\boldsymbol{y}\rVert_p$
 + 从距离到相似度，例如
   $$
@@ -77,6 +84,7 @@ toc: true
   $$
 
 ### 幂平均函数
+
 + 幂平均
   + $M_p(x_1,...,x_n)=\left(\frac{1}{n}\sum_{i=1}^n x_i^p\right)^{\frac{1}{p}}$
   + 对$p$在整个实数轴上都有定义
@@ -89,9 +97,11 @@ toc: true
   + 若$p<q$，则$M_p(x_1,...,x_n)\leq M_q(x_1,...,x_n)$
 
 ### 幂平均核
+
 $$
 M_p(\boldsymbol{x},\boldsymbol{y})=\sum_{i=1}^d M_p(x_i,y_i)
 $$
+
 + 当$p\leq 0$时，以上函数为Mercer核
 + 属于加性核
   + $p=0,\sqrt{x_iy_i}$ —— Hellinger's Kernel
@@ -100,7 +110,9 @@ $$
 + 当特征是直方图时，加性核效果极佳
 
 ## Nominal data(标记数据)
+
 ### 标记数据的比较
+
 + 标记数据Nominal data
   + 如果数据1,2,3分别表示苹果、梨和香蕉，怎么比较？
 + 基本思想：相同则为1，否则为0，即两个标记数据$x$和$y$的相似程度为$\text{II}(x=y)$
@@ -111,6 +123,7 @@ $$
   + SVM即可用该方法处理标记数据
 
 ### 从度量化到直方图
+
 + 可以看成，度量化的过程是将一个标记数据转化成为一个所有可能取值的直方图
   + 一个直方图histogram是对一个集合中元素的计数
   + 若$x=i$，其度量化的结果$\boldsymbol{x}$为$m$个bin的直方图
@@ -121,7 +134,9 @@ $$
   + $\min(x_i,y_i)$
 
 ## 信息论简介
+
 ### 从直方图到概率分布
+
 + 在非参数估计中，我们怎么估计一个分布
   + 最早从直方图开始
 + 那么我们怎么比较两个分布呢？
@@ -130,6 +145,7 @@ $$
   + 信息论！Information theory
 
 ### 信息information
+
 + 描述一个随机变量需要多少信息？
   + 假设用bit来作为信息的单位
   + 若离散变量满足$P(x=2)=1,P(x\neq 2)=0$
@@ -142,8 +158,8 @@ $$
     + 均匀分布的时候最大，$\log_2 m$
     + 单点分布最小，0
 
-
 ### Differential entropy(非负性不存在了)
+
 + 如果分布是连续的？
   $$
   h(x)=-\int p(x)\ln(p(x))dx
@@ -154,15 +170,18 @@ $$
   + 或者说，不确定性最大
 
 ### Joint,conditional entropy
+
 + $H(X,Y)=-\sum_x\sum_yP(x,y)\log_2 P(x,y)$
 + $h(X,Y)=-\int p(x,y)\ln p(x,y) dxdy$
 + $H(X\mid Y)=\sum_yp(y)H(X\mid Y=y)=\sum_{x,y}P(x,y)\log_2\frac{P(y)}{P(x,y)}=-\sum_{x,y}P(x,y)\log_2\frac{P(x,y)}{P(y)}$
 + $h(X\mid Y)=-\int p(x,y)\ln p(x\mid y)dxdy=-\int p(x,y)\ln\frac{p(x,y)}{p(y)}dxdy$
 
 ### 各种熵之间的关系
+
 {{< img src="8-1.png" alt="Rectangle" class="border-0" >}}
 
 ### 互信息
+
 + 如果$X$和$Y$互相独立，即$p(x,y)=p(x)p(y)$，或者$P(x,y)=P(x)P(y)$
   + 上面的图怎么画？
   + $I(X;Y)$表示$X$和$Y$共同的那部分信息
@@ -173,6 +192,7 @@ $$
 + 可以粗略的看成相似程度或者相关程度
 
 ### KL散度
+
 + Kullback-Leibler divergence：两个离散分布$P$和$Q$
   $$
   D_{KL}(P\lVert Q)=\sum_{i} P_i\log_2\frac{P_i}{Q_i}
@@ -183,7 +203,9 @@ $$
   + 但是，KL散度对称吗？（不对称）
 
 ## 决策树
+
 ### Titanic survivors
+
 + 该判断模型是树tree
 + 每次根据一个数据（成为属性）分成若干部分
 + 当不可再分时（叶节点），给出一个决策decision
@@ -191,6 +213,7 @@ $$
   + 可以输出一个概率分布
 
 ### 那么，选哪个属性来分？
+
 + 问题的输出是标记数据，有$m$个可能的值
 + 如果当前节点一共包含$n$个样例，记为集合$T$
 + 其对应样例的groundtruth输出是集合$y_T$

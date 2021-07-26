@@ -322,7 +322,7 @@ bool dfs(int now){
 }
 
 int main(){
-	...
+    ...
     int ans = 0;
     memset(rlink, -1, sizeof(rlink));
     memset(llink, -1, sizeof(llink));
